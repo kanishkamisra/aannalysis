@@ -73,7 +73,7 @@ python src/tokenize_and_save.py --corpus data/training_data/counterfactual_babyl
 
 python src/tokenize_and_save.py --corpus data/training_data/counterfactual_babylm_naans_new.txt  \
     --output_dir models/tokenized/ \
-    --model kanishka/smolm-autoreg-bpe-counterfactual_babylm_naans_new-1e-4&
+    --model kanishka/smolm-autoreg-bpe-counterfactual_babylm__new-1e-4&
 wait
 
   
