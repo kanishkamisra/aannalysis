@@ -14,7 +14,10 @@ declare -a models=(counterfactual_babylm_anans_new.csv counterfactual_babylm_naa
 for model in ${models[@]}
 do 
     # python src/ngram-slors.py -m models/unigrams/${model} --ngram 1
-    python src/ngram-slors.py -m models/fourgrams/${model} --ngram 4 -u models/unigrams/${model}
+    # python src/ngram-slors.py -m models/fourgrams/${model} --ngram 4 -u models/unigrams/${model}
+    python src/ngram-slors.py -m models/fourgrams/${model} --ngram 4 -u models/unigrams/${model} --aann_dir data/mahowald-anan --results_dir results/fourgram-anan
+
+    python src/ngram-slors.py -m models/fourgrams/${model} --ngram 4 -u models/unigrams/${model} --aann_dir data/mahowald-naan --results_dir results/fourgram-naan
 done
 
 # declare -a variability=(high low)
