@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# readarray -t models < <( ls models/unigrams/ ); IFS=' '
+readarray -t models < <( ls models/unigrams/ ); IFS=' '
 
 # declare -a models=(counterfactual-babylm-old_union_new_regex_aanns_removal.csv counterfactual-babylm-new_regex_aanns_removal.csv)
 # declare -a models=(counterfactual_babylm_naans_new counterfactual_babylm_300_naans_new counterfactual_babylm_300_anans_new)
@@ -10,9 +10,15 @@
 
 # declare -a models=(counterfactual-babylm-measure_nouns_as_singular.csv)
 
-# declare -a models=(babylm.csv counterfactual-babylm-indef-removal.csv counterfactual_babylm_anans_new.csv counterfactual_babylm_naans_new.csv)
+for model in ${models[@]}
+do 
+    python src/ngram-slors.py -m models/unigrams/${model} --ngram 1
+    python src/ngram-slors.py -m models/fourgrams/${model} --ngram 4 -u models/unigrams/${model}
+done
 
-declare -a models=(counterfactual_babylm_anans_new.csv counterfactual_babylm_naans_new.csv)
+declare -a models=(babylm.csv counterfactual-babylm-indef-removal.csv counterfactual_babylm_anans_new.csv counterfactual_babylm_naans_new.csv)
+
+# declare -a models=(counterfactual_babylm_anans_new.csv counterfactual_babylm_naans_new.csv)
 
 
 for model in ${models[@]}

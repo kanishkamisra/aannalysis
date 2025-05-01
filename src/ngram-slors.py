@@ -66,7 +66,7 @@ def main(args):
         )
 
         def n_gram_slor(prefix, continuation):
-            unigram_logprob = unigram_lm.sentence_log_prob(" " + continuation)
+            unigram_logprob = unigram_lm.sentence_log_prob(" " + continuation, normalize=False)
 
             full = f"{prefix} {continuation}"
             full_tokenized = tokenizer.tokenize(" " + full)
@@ -74,14 +74,17 @@ def main(args):
             full_length = len(full_tokenized)
 
             scores = list(lm.full_scores(" ".join(full_tokenized)))
+            # scores = [x * np.log(10) for x in scores]
 
             prefix_tokenized = tokenizer.tokenize(" " + prefix)
             # print(prefix_tokenized)
             prefix_len = len(prefix_tokenized)
 
             region = [p[0] for p in scores][prefix_len:-1]
+            region = [x * np.log(10) for x in region]
 
-            return (np.sum(region) / (full_length - prefix_len)) - unigram_logprob
+            # return (np.sum(region) / (full_length - prefix_len)) - unigram_logprob
+            return (np.sum(region) - unigram_logprob)/ (full_length - prefix_len)
 
     constructions = utils.read_csv_dict(f"{args.aann_dir}/corruption.csv")
 

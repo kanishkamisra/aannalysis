@@ -25,7 +25,7 @@ class UnigramLM:
                 self.counts[line["word"]] = int(line["count"])
         self.total_counts = sum(self.counts.values()) + len(self.counts.keys())
 
-    def sentence_log_prob(self, sentence, token_wise=False):
+    def sentence_log_prob(self, sentence, token_wise=False, normalize = False):
         words = self.tokenizer.tokenize(sentence)
         probs = []
         for word in words:
@@ -35,6 +35,9 @@ class UnigramLM:
                 probs.append(1 / self.total_counts)
 
         if token_wise:
-            return [np.log10(prob) for prob in probs]
+            return [np.log(prob) for prob in probs]
         else:
-            return np.mean([np.log10(prob) for prob in probs])
+            if normalize:
+                return np.mean([np.log(prob) for prob in probs])
+            else:
+                return np.sum([np.log(prob) for prob in probs])
