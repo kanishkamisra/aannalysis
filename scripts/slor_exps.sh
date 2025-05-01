@@ -8,7 +8,8 @@
 # declare -a models=(counterfactual_babylm_measure_nps_as_singular_new counterfactual_babylm_aann_dtanns counterfactual_babylm_indef_articles_with_pl_nouns_removal_new counterfactual-babylm-new_regex_aanns_removal)
 # # declare -a models=(counterfactual_babylm_naans_new-1e-3 counterfactual_babylm_300_naans_new-1e-3 counterfactual_babylm_300_anans_new-1e-3 counterfactual_babylm_anans_new-1e-3)
 
-declare -a models=(counterfactual-babylm-measure_nouns_as_singular.csv)
+# declare -a models=(counterfactual-babylm-measure_nouns_as_singular.csv)
+declare -a models=(counterfactual_babylm_anans_new.csv counterfactual_babylm_naans_new.csv)
 
 for model in ${models[@]}
 do 
