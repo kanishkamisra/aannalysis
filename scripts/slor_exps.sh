@@ -9,7 +9,7 @@
 # # declare -a models=(counterfactual_babylm_naans_new-1e-3 counterfactual_babylm_300_naans_new-1e-3 counterfactual_babylm_300_anans_new-1e-3 counterfactual_babylm_anans_new-1e-3)
 
 # declare -a models=(counterfactual-babylm-measure_nouns_as_singular.csv)
-declare -a models=(counterfactual_babylm_anans_new.csv counterfactual_babylm_naans_new.csv)
+declare -a models=(babylm.csv counterfactual-babylm-indef-removal.csv counterfactual_babylm_anans_new.csv counterfactual_babylm_naans_new.csv)
 
 for model in ${models[@]}
 do 
