@@ -9,12 +9,16 @@
 # # declare -a models=(counterfactual_babylm_naans_new-1e-3 counterfactual_babylm_300_naans_new-1e-3 counterfactual_babylm_300_anans_new-1e-3 counterfactual_babylm_anans_new-1e-3)
 
 # declare -a models=(counterfactual-babylm-measure_nouns_as_singular.csv)
-declare -a models=(babylm.csv counterfactual-babylm-indef-removal.csv counterfactual_babylm_anans_new.csv counterfactual_babylm_naans_new.csv)
+
+# declare -a models=(babylm.csv counterfactual-babylm-indef-removal.csv counterfactual_babylm_anans_new.csv counterfactual_babylm_naans_new.csv)
+
+declare -a models=(counterfactual_babylm_anans_new.csv counterfactual_babylm_naans_new.csv)
+
 
 for model in ${models[@]}
 do 
     # python src/ngram-slors.py -m models/unigrams/${model} --ngram 1
-    # python src/ngram-slors.py -m models/fourgrams/${model} --ngram 4 -u models/unigrams/${model}
+    python src/ngram-slors.py -m models/fourgrams/${model} --ngram 4 -u models/unigrams/${model}
     python src/ngram-slors.py -m models/fourgrams/${model} --ngram 4 -u models/unigrams/${model} --aann_dir data/mahowald-anan --results_dir results/fourgram-anan
 
     python src/ngram-slors.py -m models/fourgrams/${model} --ngram 4 -u models/unigrams/${model} --aann_dir data/mahowald-naan --results_dir results/fourgram-naan

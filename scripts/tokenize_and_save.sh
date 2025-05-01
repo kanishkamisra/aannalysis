@@ -67,11 +67,11 @@
 #     --output_dir models/tokenized/ \
 #     --model kanishka/smolm-autoreg-bpe-counterfactual_babylm_aann_dtanns-1e-4
 
-python src/tokenize_and_save.py --corpus /home/km55359/rawdata/babylm_data/babylm_100M/sents/babylm_sents.txt \
+python src/tokenize_and_save.py --corpus data/training_data/counterfactual_babylm_anans_new.txt \
     --output_dir models/tokenized/ \
     --model kanishka/smolm-autoreg-bpe-counterfactual_babylm_naans_new-1e-4&
 
-python src/tokenize_and_save.py --corpus /home/km55359/rawdata/babylm_data/babylm_100M/sents/babylm_sents.txt \
+python src/tokenize_and_save.py --corpus data/training_data/counterfactual_babylm_naans_new.txt  \
     --output_dir models/tokenized/ \
     --model kanishka/smolm-autoreg-bpe-counterfactual_babylm_anans_new-1e-4&
 wait
