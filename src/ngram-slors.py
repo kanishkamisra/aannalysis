@@ -84,7 +84,7 @@ def main(args):
             region = [x * np.log(10) for x in region]
 
             # return (np.sum(region) / (full_length - prefix_len)) - unigram_logprob
-            return (np.sum(region) - unigram_logprob)/ (full_length - prefix_len)
+            return (np.sum(region) - unigram_logprob) / (full_length - prefix_len), np.sum(region)/(full_length - prefix_len)
 
     constructions = utils.read_csv_dict(f"{args.aann_dir}/corruption.csv")
 
@@ -104,14 +104,16 @@ def main(args):
         for col in columns:
             # print(f"{col}: {construction['prefix'] +  ' ' + construction[col]}")
             if args.ngram == 1:
-                score = lm.sentence_log_prob(" " + construction[col])
+                logprob = lm.sentence_log_prob(" " + construction[col])
+                results[f"{col}_score"] = logprob
             else:
                 # tokenized = tokenizer.tokenize(" " + construction[col])
                 # scores = [p[0] for p in list(lm.full_scores(" ".join(tokenized)))[1:-1]]
                 # score = np.sum(scores) / len(tokenized)
-                score = n_gram_slor(construction['prefix'], construction[col])
+                slor, logprob = n_gram_slor(construction['prefix'], construction[col])
 
-            results[f"{col}_score"].append(score)
+                results[f"{col}_score"].append(slor)
+                results[f"{col}_logprob"].append(logprob)
 
     results = dict(results)
     results = pd.DataFrame(results)
