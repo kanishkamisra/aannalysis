@@ -380,26 +380,26 @@ noised_and_all %>%
     family = "Times",
     size = 3.5
   ) +
-  geom_curve(
-    xend = 3.1, yend = 0.14, 
-    x = 2.7, y = 0.001, 
-    curvature = -0.3, 
-    arrow = arrow(length = unit(2, "mm")), 
-    data = tibble(train_condition="AANN", target_construction="Test on AANN"),
-    color = "grey"
-  ) +
-  geom_text(
-    data = tibble(
-      train_condition = "AANN",
-      accuracy = 0.14,
-      target_construction="Test on AANN"
-    ),
-    x = 3.8,
-    label = "2 & 4-gram",
-    color = "darkgrey",
-    family = "Times",
-    size = 4
-  ) +
+  # geom_curve(
+  #   xend = 3.1, yend = 0.14, 
+  #   x = 2.7, y = 0.001, 
+  #   curvature = -0.3, 
+  #   arrow = arrow(length = unit(2, "mm")), 
+  #   data = tibble(train_condition="AANN", target_construction="Test on AANN"),
+  #   color = "grey"
+  # ) +
+  # geom_text(
+  #   data = tibble(
+  #     train_condition = "AANN",
+  #     accuracy = 0.14,
+  #     target_construction="Test on AANN"
+  #   ),
+  #   x = 3.8,
+  #   label = "2 & 4-gram",
+  #   color = "darkgrey",
+  #   family = "Times",
+  #   size = 4
+  # ) +
   # geom_curve(
   #   xend = 1.6, yend = 0.14, 
   #   x = 2, y = 0.063, 
